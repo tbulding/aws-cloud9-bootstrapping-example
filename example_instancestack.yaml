@@ -29,6 +29,42 @@ Parameters:
     Type: Number
     Description: The Size in GB of the Cloud9 Instance Volume. 
     Default: 15
+  QSS3BucketName:
+    Type: String
+    Description: Name of the S3 bucket for your copy of the Quick Start assets.
+      Keep the default name unless you are customizing the template.
+      Changing the name updates code references to point to a new Quick
+      Start location. This name can include numbers, lowercase letters,
+      and hyphens, but do not start or end with a hyphen (-).
+      See https://aws-quickstart.github.io/option1.html.
+    MinLength: 3
+    MaxLength: 63
+    AllowedPattern: ^[0-9a-z]+([0-9a-z-]*[0-9a-z])*$
+    ConstraintDescription:
+      The Quick Start bucket name can include numbers, lowercase
+      letters, uppercase letters, and hyphens (-). It cannot start or end with a
+      hyphen (-).
+    Default: aws-cloud9-bootstrapping-example
+  QSS3BucketRegion:
+    Type: String
+    Description: The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.
+    Default: us-east-1
+  QSS3KeyPrefix:
+    Type: String
+    Description:
+      S3 key prefix that is used to simulate a directory for your copy of the
+      Quick Start assets. Keep the default prefix unless you are customizing
+      the template. Changing this prefix updates code references to point to
+      a new Quick Start location. This prefix can include numbers, lowercase
+      letters, uppercase letters, hyphens (-), and forward slashes (/). End
+      with a forward slash.
+      See https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html
+      and https://aws-quickstart.github.io/option1.html.
+    AllowedPattern: ^([0-9a-zA-Z-.]+/)*$
+    ConstraintDescription:
+      The Quick Start S3 key prefix can include numbers, lowercase letters,
+      uppercase letters, hyphens (-), and forward slashes (/).
+    Default: aws-cloud9-bootstrapping-example/
 
 Conditions: 
   Create3rdPartyResources: !Equals [ !Ref ExampleC9EnvType, 3rdParty ]

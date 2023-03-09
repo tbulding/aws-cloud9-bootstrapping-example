@@ -1,0 +1,13 @@
+project:
+  name: aws-cloud9-bootstrapping-example
+  owner: example@email.com
+  shorten_stack_name: true
+  s3_regional_buckets: true
+  regions:
+    - us-east-1
+  parameters:
+    QSS3BucketName: "$[taskcat_autobucket]"
+    QSS3BucketRegion: "$[taskcat_current_region]"
+tests:
+  example:
+    template: example_instancestack.yaml
